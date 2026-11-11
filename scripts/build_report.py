@@ -201,10 +201,12 @@ P("We define <b>pressure</b> as a continuous, per-delivery intensity (0–1) bui
   "<i>before</i> each ball is bowled — innings phase, wickets already lost, balls remaining and, in run-chases, "
   "the required run rate and how alive the contest is. Crucially we build <b>two separate, asymmetric models</b>: "
   "a batting team is under pressure in hard chases and at the death, whereas a bowling team is under pressure when "
-  "batters are set and scoring freely. Every player is then judged against <b>their own baseline</b> and scored on a "
-  "balanced blend of (i) absolute pressure performance, (ii) uplift versus baseline, and (iii) match-to-match "
-  "consistency, with empirical-Bayes shrinkage so small samples cannot spike. Rankings are stress-tested across "
-  "nine model configurations; the <b>reliability</b> column is the share in which a player stays in the top 10.")
+  "batters are set and scoring freely. Every player is judged against a <b>context-matched baseline</b> (their own "
+  "non-pressure level in the same innings phases) and scored on an <b>absolute-leaning blend</b> — 50% absolute "
+  "pressure performance, 30% uplift versus baseline, 20% match-to-match consistency — with empirical-Bayes "
+  "shrinkage so small samples cannot spike. Rankings are stress-tested across nine model configurations; the "
+  "<b>reliability</b> column is the share in which a player stays in the top 10. These lists are the <b>primary "
+  "statistical result and apply no nationality filter</b>; an optional IPL-availability view is given in §15.")
 SP(2)
 h("Top 10 Batters Under Pressure")
 story.append(ranking_table(bat, "bat"))
@@ -285,11 +287,13 @@ P("Per delivery set: legal balls, runs conceded (bowler-charged), credited wicke
 
 # ---------- 9 RATING ----------
 H("9 · Player Rating Methodology")
-P("<b>Score = 0.40 · Absolute + 0.35 · Uplift + 0.25 · Consistency</b> (each a 0–1 percentile within the eligible pool, ×100):")
+P("<b>Score = 0.50 · Absolute + 0.30 · Uplift + 0.20 · Consistency</b> (each a 0–1 percentile within the eligible pool, ×100). "
+  "Absolute carries the most weight so a genuinely high-level pressure performance is rewarded on its own merit, while uplift and "
+  "consistency keep the measure honest about who <i>lifts</i> when it matters:")
 bullets([
-  "<b>Absolute</b> — performance under pressure, <i>format-adjusted</i> against the league's pressure par for the formats the player actually played (so IPL and T20I are compared fairly). Batters: pressure SR + survival; bowlers: economy-vs-par + wicket rate + dot %.",
-  "<b>Uplift</b> — pressure minus own baseline, <b>empirical-Bayes shrunk</b> toward zero by pressure sample size, so a player with 15 good balls cannot outrank one with 300.",
-  "<b>Consistency</b> — the share of a player's pressure <i>matches</i> in which they actually delivered (batter SR within 10% of own baseline; bowler economy ≤ baseline or took a wicket), reliability-weighted by number of qualifying matches. The 10% tolerance ensures high-baseline players are not unfairly penalised for a strong-but-slightly-below-average pressure innings.",
+  "<b>Absolute (50%)</b> — performance under pressure, <i>format-adjusted</i> against the league's pressure par for the formats the player actually played (so IPL and T20I are compared fairly). Batters: pressure SR + survival; bowlers: economy-vs-par + wicket rate + dot %.",
+  "<b>Uplift (30%)</b> — pressure minus the player's <b>context-matched</b> baseline (own non-pressure level in the same innings phases, shrunk toward their overall baseline), then <b>empirical-Bayes shrunk</b> toward zero by pressure sample size. Context-matching removes the death-over illusion from the raw uplift.",
+  "<b>Consistency (20%)</b> — the share of a player's pressure <i>matches</i> in which they delivered. Batters: SR within 10% of their (context-matched) baseline, a tolerance so high-baseline players are not penalised for a strong-but-slightly-below-average innings. Bowlers: a <b>graded</b> blend of economy improvement (45%), wicket contribution (30%) and dot-ball rate (25%), replacing the old ‘economy ≤ baseline OR one wicket’ rule that a single wicket could fully satisfy.",
 ])
 story.append(img("components.png", 165)); SP(2)
 
@@ -343,21 +347,23 @@ for _, r in bowl.head(10).iterrows():
       f"pressure, over {int(r['p_legal_balls'])} pressure legal balls in {int(r['p_matches'])} "
       f"matches; stays top-10 in {r['reliability']*100:.0f}% of configurations.", BODY)
 
-# ---------- 15 AVAILABILITY FILTER ----------
+# ---------- 15 AVAILABILITY VIEW (SECONDARY) ----------
 story.append(PageBreak())
-H("15 · IPL-Availability Filter")
+H("15 · IPL-Availability — an Optional, Secondary View")
 nbr = pd.read_csv(OUT / "excluded_batters.csv")
 nwr = pd.read_csv(OUT / "excluded_bowlers.csv")
-P("Because Rajasthan Royals is an IPL franchise, the final lists exclude players who cannot be signed in "
-  "the IPL — specifically players whose national team (inferred from their T20I appearances in the data) is "
-  "Pakistan. The scoring model is unchanged and fully data-driven; this is an actionability filter applied "
-  "<i>after</i> scoring, and the removed players remain in the full metrics tables for transparency.")
+P("The problem statement does not ask for a nationality filter, so the <b>primary rankings in this report "
+  "apply none</b> — they are the pure statistical result. Separately, because Rajasthan Royals is an IPL "
+  "franchise, we provide an <i>optional</i> view that removes players an IPL side cannot sign. Nationality is "
+  "<b>inferred</b> from the national team a player represents in T20Is — a data-only heuristic that is "
+  "<b>not independently verified</b> (players with no T20I record cannot be classified), which is why it is "
+  "presented only as a secondary lens. The scoring model is identical; this view drops the flagged players and re-ranks.")
 if len(nbr):
-    P("<b>Excluded batters</b> (would otherwise be eligible): " +
+    P("<b>Removed from the IPL-availability view — batters</b>: " +
       ", ".join(f"{r.player}" for _, r in nbr.iterrows()) + ".", SMALL)
 if len(nwr):
-    P("<b>Excluded bowlers</b>: " + ", ".join(f"{r.player}" for _, r in nwr.iterrows()) + ".", SMALL)
-P("The filter is a single configurable setting; removing it reinstates these players in rank order.", SMALL)
+    P("<b>Removed from the IPL-availability view — bowlers</b>: " + ", ".join(f"{r.player}" for _, r in nwr.iterrows()) + ".", SMALL)
+P("Full IPL-available top-10s are in outputs/batter_rankings_ipl_available.csv and the dashboard.", SMALL)
 
 # ---------- 16 MODEL VALIDATION ----------
 H("16 · Model Validation")
