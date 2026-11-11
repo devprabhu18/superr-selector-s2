@@ -1,0 +1,68 @@
+# ============================================================
+#  Python
+# ============================================================
+__pycache__/
+*.py[cod]
+*.pyo
+*$py.class
+*.egg
+*.egg-info/
+.eggs/
+build/
+dist/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# ============================================================
+#  Virtual environments
+# ============================================================
+.venv/
+venv/
+env/
+ENV/
+
+# ============================================================
+#  OS / editor junk
+# ============================================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ============================================================
+#  Logs / temp / scratch
+# ============================================================
+*.log
+tmp/
+.tmp/
+.cache/
+
+# ============================================================
+#  Streamlit secrets (never commit credentials)
+# ============================================================
+.streamlit/secrets.toml
+
+# ============================================================
+#  Proprietary raw data
+#  41MB raw ball-by-ball CSV: NOT needed by the dashboard (it reads the
+#  derived data/processed/deliveries_state.parquet instead).
+#  Remove the next line ONLY if you want judges to re-run run_pipeline.py
+#  from the raw source inside this repo.
+# ============================================================
+6af3166e7b922_data_pack/ball_by_ball.csv
+
+# ============================================================
+#  The trimmed "public-safe" dashboard variant: kept local, not part of the deploy
+# ============================================================
+public_dashboard/

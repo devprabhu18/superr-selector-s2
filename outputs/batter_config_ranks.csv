@@ -1,0 +1,91 @@
+config,rank,player,id
+base,1,Matthew Wade,796
+base,2,Naman Dhir,37052
+base,3,Babar Azam,2485
+base,4,Rohit Sharma,126
+base,5,Rishabh Pant,4703
+base,6,Mohammad Rizwan,3024
+base,7,Shai Hope,4369
+base,8,Harry Tector,4812
+base,9,Fakhar Zaman,2921
+base,10,Shubman Gill,6288
+thr_0.50,1,Matthew Wade,796
+thr_0.50,2,Babar Azam,2485
+thr_0.50,3,Naman Dhir,37052
+thr_0.50,4,Suryakumar Yadav,1699
+thr_0.50,5,Shai Hope,4369
+thr_0.50,6,Rishabh Pant,4703
+thr_0.50,7,Fakhar Zaman,2921
+thr_0.50,8,Usman Khan,20327
+thr_0.50,9,Namboori Tilak Varma,7897
+thr_0.50,10,Rovman Powell,4986
+thr_0.60,1,Babar Azam,2485
+thr_0.60,2,Naman Dhir,37052
+thr_0.60,3,Namboori Tilak Varma,7897
+thr_0.60,4,Rishabh Pant,4703
+thr_0.60,5,Fakhar Zaman,2921
+thr_0.60,6,Vijay Shankar,2877
+thr_0.60,7,Suryakumar Yadav,1699
+thr_0.60,8,Jaker Ali Anik,4773
+thr_0.60,9,Najibullah Zadran,2533
+thr_0.60,10,Rovman Powell,4986
+def_chase,1,Namboori Tilak Varma,7897
+def_chase,2,Babar Azam,2485
+def_chase,3,Rassie van der Dussen,2930
+def_chase,4,Shai Hope,4369
+def_chase,5,Vijay Shankar,2877
+def_chase,6,Fakhar Zaman,2921
+def_chase,7,Shashank Singh,2756
+def_chase,8,Suryakumar Yadav,1699
+def_chase,9,Dhruv Jurel,7260
+def_chase,10,Harry Tector,4812
+def_death_coll,1,Najibullah Zadran,2533
+def_death_coll,2,Sikandar Raza,2984
+def_death_coll,3,Rishabh Pant,4703
+def_death_coll,4,Tristan Stubbs,20702
+def_death_coll,5,Virat Kohli,47
+def_death_coll,6,Harry Brook,6280
+def_death_coll,7,Rinku Singh,4708
+def_death_coll,8,Vijay Shankar,2877
+def_death_coll,9,Naman Dhir,37052
+def_death_coll,10,Liam Livingstone,4391
+strict_sample,1,Matthew Wade,796
+strict_sample,2,Naman Dhir,37052
+strict_sample,3,Rishabh Pant,4703
+strict_sample,4,Harry Tector,4812
+strict_sample,5,Namboori Tilak Varma,7897
+strict_sample,6,Fakhar Zaman,2921
+strict_sample,7,Suryakumar Yadav,1699
+strict_sample,8,Shubman Gill,6288
+strict_sample,9,Rovman Powell,4986
+strict_sample,10,Tristan Stubbs,20702
+w_uplift,1,Matthew Wade,796
+w_uplift,2,Naman Dhir,37052
+w_uplift,3,Rishabh Pant,4703
+w_uplift,4,Babar Azam,2485
+w_uplift,5,Harry Tector,4812
+w_uplift,6,Fakhar Zaman,2921
+w_uplift,7,Rohit Sharma,126
+w_uplift,8,Rovman Powell,4986
+w_uplift,9,Shai Hope,4369
+w_uplift,10,Mohammad Rizwan,3024
+w_absolute,1,Matthew Wade,796
+w_absolute,2,Naman Dhir,37052
+w_absolute,3,Mohammad Rizwan,3024
+w_absolute,4,Rohit Sharma,126
+w_absolute,5,Babar Azam,2485
+w_absolute,6,Suryakumar Yadav,1699
+w_absolute,7,Rishabh Pant,4703
+w_absolute,8,Shubman Gill,6288
+w_absolute,9,Namboori Tilak Varma,7897
+w_absolute,10,Shai Hope,4369
+w_consistency,1,Matthew Wade,796
+w_consistency,2,Naman Dhir,37052
+w_consistency,3,Rishabh Pant,4703
+w_consistency,4,Rovman Powell,4986
+w_consistency,5,Mohammad Rizwan,3024
+w_consistency,6,Namboori Tilak Varma,7897
+w_consistency,7,Harry Tector,4812
+w_consistency,8,Jitesh Sharma,3916
+w_consistency,9,Moeen Ali,1596
+w_consistency,10,Suryakumar Yadav,1699
